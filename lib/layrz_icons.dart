@@ -2,7 +2,8 @@ library layrz_icons;
 
 import 'package:flutter/widgets.dart';
 
-part 'src/enum.dart';
+part 'src/class_enum.dart';
+part 'src/icon_enum.dart';
 part 'src/mapping.dart';
 
 class LayrzIcon {

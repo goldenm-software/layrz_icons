@@ -5,8 +5,10 @@ from pathlib import Path
 def _to_kebab_case(name: str) -> str:
     return re.sub(r"(?<!^)(?=[A-Z])", "-", name).lower()
 
+
 def _to_camel_case(name: str) -> str:
     return name[0].upper() + name[1:]
+
 
 BASE_DIR = Path(__file__).resolve().parent
 
@@ -96,32 +98,32 @@ with open(DART_FILE, "r", encoding="utf-8") as f:
 
 font_awesome_mapping = {}
 modes = [
-    'Brands',
-    'Solid',
-    'Regular',
-    'Light',
-    'Duotone',
-    'Thin',
-    'SharpThin',
-    'SharpLight',
-    'SharpRegular',
-    'SharpSolid',
+    "Brands",
+    "Solid",
+    "Regular",
+    "Light",
+    "Duotone",
+    "Thin",
+    "SharpThin",
+    "SharpLight",
+    "SharpRegular",
+    "SharpSolid",
 ]
 
 for line in lines:
     line = line.strip()
-    if not line.startswith('static const IconData'):
+    if not line.startswith("static const IconData"):
         continue
-    line = line.replace('static const IconData', '').strip()
-    name = line.split('=')[0].strip()
-    code_point = line.split('=')[1].strip().replace(';', '')
-    if not code_point.startswith('IconData'):
+    line = line.replace("static const IconData", "").strip()
+    name = line.split("=")[0].strip()
+    code_point = line.split("=")[1].strip().replace(";", "")
+    if not code_point.startswith("IconData"):
         continue
-    mode = code_point.split('(')[0].replace('IconData', '')
+    mode = code_point.split("(")[0].replace("IconData", "")
     if mode not in modes:
         continue
-    
-    code_point = code_point.split('(')[1].split(')')[0].strip()
+
+    code_point = code_point.split("(")[1].split(")")[0].strip()
     if mode not in font_awesome_mapping:
         font_awesome_mapping[mode] = {}
     font_awesome_mapping[mode][name] = code_point
@@ -134,7 +136,7 @@ OUTPUT_FILE = BASE_DIR / "lib" / "src" / "mapping.dart"
 
 OUTPUT_FILE.unlink(missing_ok=True)
 
-print('Writing mapping file...')
+print("Writing mapping file...")
 with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
     f.write('part of "../layrz_icons.dart";\n\n')
     f.write("/// This is a auto-generated file. Do not modify it manually.\n\n")
@@ -159,7 +161,7 @@ with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
             f'  "solar-outline-{_to_kebab_case(name)}": LayrzIcon(codePoint: {code_point}, name: "solar-outline-{_to_kebab_case(name)}", family: LayrzFamily.solarIconsOutline),\n'
         )
     f.write("  // /Solar Icons Outline\n")
-    
+
     f.write("  // Font Awesome Flutter\n")
     for mode, icons in font_awesome_mapping.items():
         for name, code_point in icons.items():
@@ -167,14 +169,14 @@ with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
                 f'  "fa-{_to_kebab_case(mode)}-{_to_kebab_case(name)}": LayrzIcon(codePoint: {code_point}, name: "fa-{_to_kebab_case(mode)}-{_to_kebab_case(name)}", family: LayrzFamily.fontAwesome{mode}),\n'
             )
     f.write("  // /Font Awesome Flutter\n")
-    
+
     # <INSERT HERE YOUR NEW LIBRARY>
-    
+
     f.write("};\n\n")
 
-print('Creating enum file...')
+print("Creating enum file...")
 
-OUTPUT_FILE = BASE_DIR / "lib" / "src" / "enum.dart"
+OUTPUT_FILE = BASE_DIR / "lib" / "src" / "icon_enum.dart"
 OUTPUT_FILE.unlink(missing_ok=True)
 
 with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
@@ -182,14 +184,50 @@ with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
     f.write("/// This is a auto-generated file. Do not modify it manually.\n\n")
     f.write("class LayrzIcons {\n")
     for name in mdi_icon_mapping.keys():
-        f.write(f'  static IconData get mdi{_to_camel_case(name)} => iconMapping["mdi-{_to_kebab_case(name)}"]!.iconData;\n')
+        f.write(
+            f'  static IconData get mdi{_to_camel_case(name)} => iconMapping["mdi-{_to_kebab_case(name)}"]!.iconData;\n'
+        )
     for name in solar_icon_bold_mapping.keys():
-        f.write(f'  static IconData get solarBold{_to_camel_case(name)} => iconMapping["solar-bold-{_to_kebab_case(name)}"]!.iconData;\n')
+        f.write(
+            f'  static IconData get solarBold{_to_camel_case(name)} => iconMapping["solar-bold-{_to_kebab_case(name)}"]!.iconData;\n'
+        )
     for name in solar_icon_outline_mapping.keys():
-        f.write(f'  static IconData get solarOutline{_to_camel_case(name)} => iconMapping["solar-outline-{_to_kebab_case(name)}"]!.iconData;\n')
+        f.write(
+            f'  static IconData get solarOutline{_to_camel_case(name)} => iconMapping["solar-outline-{_to_kebab_case(name)}"]!.iconData;\n'
+        )
     for mode, icons in font_awesome_mapping.items():
         for name in icons.keys():
-            f.write(f'  static IconData get fa{mode.capitalize()}{_to_camel_case(name)} => iconMapping["fa-{_to_kebab_case(mode)}-{_to_kebab_case(name)}"]!.iconData;\n')
-            
+            f.write(
+                f'  static IconData get fa{mode.capitalize()}{_to_camel_case(name)} => iconMapping["fa-{_to_kebab_case(mode)}-{_to_kebab_case(name)}"]!.iconData;\n'
+            )
+
+    # <INSERT HERE YOUR NEW LIBRARY>
+    f.write("}\n")
+
+OUTPUT_FILE = BASE_DIR / "lib" / "src" / "class_enum.dart"
+OUTPUT_FILE.unlink(missing_ok=True)
+
+with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+    f.write('part of "../layrz_icons.dart";\n\n')
+    f.write("/// This is a auto-generated file. Do not modify it manually.\n\n")
+    f.write("class LayrzIconsClasses {\n")
+    for name in mdi_icon_mapping.keys():
+        f.write(
+            f'  static LayrzIcon get mdi{_to_camel_case(name)} => iconMapping["mdi-{_to_kebab_case(name)}"]!;\n'
+        )
+    for name in solar_icon_bold_mapping.keys():
+        f.write(
+            f'  static LayrzIcon get solarBold{_to_camel_case(name)} => iconMapping["solar-bold-{_to_kebab_case(name)}"]!;\n'
+        )
+    for name in solar_icon_outline_mapping.keys():
+        f.write(
+            f'  static LayrzIcon get solarOutline{_to_camel_case(name)} => iconMapping["solar-outline-{_to_kebab_case(name)}"]!;\n'
+        )
+    for mode, icons in font_awesome_mapping.items():
+        for name in icons.keys():
+            f.write(
+                f'  static LayrzIcon get fa{mode.capitalize()}{_to_camel_case(name)} => iconMapping["fa-{_to_kebab_case(mode)}-{_to_kebab_case(name)}"]!;\n'
+            )
+
     # <INSERT HERE YOUR NEW LIBRARY>
     f.write("}\n")

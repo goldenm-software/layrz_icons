@@ -128,7 +128,9 @@ for line in lines:
         font_awesome_mapping[mode] = {}
     font_awesome_mapping[mode][name] = code_point
 
-print(f"Mapped {len(font_awesome_mapping)} icons from Font Awesome Flutter")
+print(
+    f"Mapped {sum([len(v) for v in font_awesome_mapping.values()])} icons from Font Awesome Flutter"
+)
 
 # <INSERT HERE YOUR NEW LIBRARY>
 

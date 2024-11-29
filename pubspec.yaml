@@ -1,6 +1,6 @@
 name: layrz_icons
 description: "A unified icon package."
-version: 1.0.1
+version: 1.0.3
 homepage: https://icons.layrz.com
 repository: https://github.com/goldenm-software/layrz_icons
 
@@ -15,7 +15,8 @@ dependencies:
   material_design_icons_flutter: ^7.0.7296
   solar_icons: ^0.0.5
   font_awesome_flutter: ^10.8.0
-
+  ionicons: ^0.2.2
+  iconsax_plus: ^1.0.0
 
 dev_dependencies:
   flutter_test:

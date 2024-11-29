@@ -13,16 +13,13 @@ Right now, `layrz_icons` integrates three libraries:
 - [material_design_icons_flutter](https://pub.dev/packages/material_design_icons_flutter)
 - [font_awesome_flutter](https://pub.dev/packages/font_awesome_flutter)
 - [solar_icons](https://pub.dev/packages/solar_icons)
+- [ionicons](https://pub.dev/packages/ionicons)
+- [iconsax_plus](https://pub.dev/packages/iconsax_plus)
 
 Many thanks to the developers of these libraries, they are awesome!
 
-## How to add a new icon library?
-You have two options to do that, opening an Issue and we'll add it for you, or you can do it yourself, just follow the steps below:
-
-1. Duplicate the file `mapper.example.py` and rename it to `mapper.py`
-2. Find the `<INSERT HERE YOUR NEW LIBRARY>` string and replace it with a similar workflow used on the other libraries
-3. Run the script `python3 mapper.py` to generate the new mapping object.
-4. Create a PR to check on our end if everyting is OK. If is the case, we'll merge it.
+## --no-tree-shake-icons is required? / Compilation failures
+You need as mandatory to use the `--no-tree-shake-icons` flag in your Flutter project. Otherwise you will not be able to compile your app.
 
 ## Disclaimer
 We don't attempt to copy or steal any icon, we just want to make it easier to use them in your projects. Also, if you want to add a new icon library, please make sure to check the license of the library, we don't want to have any legal issues.
@@ -43,3 +40,6 @@ For more information, contact us at [sales@layrz.com](mailto:sales@layrz.com)
 
 ## License
 This project is under MIT License, for more information, check out the `LICENCE`
+
+## To-do's
+- [ ] Create an export for the icons on the example

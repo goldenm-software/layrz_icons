@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "ms-python.python",
+    "charliermarsh.ruff",
+    "ms-python.vscode-pylance",
+    "njpwerner.autodocstring",
+    "oderwat.indent-rainbow",
+    "tamasfe.even-better-toml",
+    "Dart-Code.dart-code",
+    "Dart-Code.flutter"
+  ]
+}

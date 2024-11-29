@@ -1,0 +1,21 @@
+[project]
+name = "layrz-icons"
+version = "1.0.0"
+dependencies = [
+    "tzdata>=2024.2",
+]
+requires-python = ">=3.12"
+
+[tool.ruff]
+indent-width = 2
+line-length = 120
+exclude = [".venv"]
+
+[tool.ruff.lint]
+ignore = ["F401", "E701", "TD003","T201"]
+select = ["I", "E", "W", "F", "B", "TD", "DJ", "DTZ", "T20", "PYI"]
+
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "space"
+docstring-code-format = true

@@ -29,8 +29,10 @@ migrate_working_dir/
 build/
 
 mapper.py
+stats.py
 
 .venv/
+**/*/__pycache__/
 
 **/*/generated_plugin_registrant.cc
 **/*/generated_plugin_registrant.h

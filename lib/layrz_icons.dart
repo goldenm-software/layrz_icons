@@ -34,6 +34,10 @@ enum LayrzFamily {
   fontAwesomeSharpLight,
   fontAwesomeSharpRegular,
   fontAwesomeSharpSolid,
+  ionicons,
+  iconsaxPlusBold,
+  iconsaxPlusBroken,
+  iconsaxPlusLinear,
   ;
 
   String get fontFamily {
@@ -64,6 +68,14 @@ enum LayrzFamily {
         return 'FontAwesomeSharpRegular';
       case LayrzFamily.fontAwesomeSharpSolid:
         return 'FontAwesomeSharpSolid';
+      case LayrzFamily.ionicons:
+        return 'Ionicons';
+      case LayrzFamily.iconsaxPlusBold:
+        return 'IconsaxPlusBold';
+      case LayrzFamily.iconsaxPlusBroken:
+        return 'IconsaxPlusBroken';
+      case LayrzFamily.iconsaxPlusLinear:
+        return 'IconsaxPlusLinear';
     }
   }
 
@@ -85,6 +97,12 @@ enum LayrzFamily {
       case LayrzFamily.fontAwesomeSharpRegular:
       case LayrzFamily.fontAwesomeSharpSolid:
         return 'font_awesome_flutter';
+      case LayrzFamily.ionicons:
+        return 'ionicons';
+      case LayrzFamily.iconsaxPlusBold:
+      case LayrzFamily.iconsaxPlusBroken:
+      case LayrzFamily.iconsaxPlusLinear:
+        return 'iconsax_plus';
     }
   }
 }

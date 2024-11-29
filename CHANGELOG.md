@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.3
+
+- Optimizations
+- Added `ionicons` to the integrated icons
+- Added `iconsax_plus` to the integrated icons
+
 ## 1.0.2
 
 - Added `LayrzIconsClasses` to simplify the class calling.

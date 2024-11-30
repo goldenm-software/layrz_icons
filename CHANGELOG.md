@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.4
+
+- Fixed an issue related to Font Awesome icons mapping
+
 ## 1.0.3
 
 - Optimizations

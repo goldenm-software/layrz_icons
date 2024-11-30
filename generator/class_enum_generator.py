@@ -39,7 +39,7 @@ def generate_class_enum(
       f.write('family: LayrzFamily.solarIconsOutline);\n')
 
     for mode, icons in font_awesome_mapping.items():
-      for name in icons.keys():
+      for name, code_point in icons.items():
         f.write(f'  static LayrzIcon get fa{mode.capitalize()}{to_camel_case(name, capitalize=True)} => ')
         f.write(f'LayrzIcon(codePoint: {code_point}, name: "fa-{to_kebab_case(mode)}-{to_kebab_case(name)}", ')
         f.write(f'family: LayrzFamily.fontAwesome{mode});\n')

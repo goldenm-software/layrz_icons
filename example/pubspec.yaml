@@ -14,6 +14,8 @@ dependencies:
 
   layrz_theme: ^7.0.10
   layrz_models: any
+  go_router: ^12.1.1
+  url_launcher: ^6.3.1
 
 dev_dependencies:
   integration_test:

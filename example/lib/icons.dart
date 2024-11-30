@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:layrz_icons/layrz_icons.dart';
+import 'package:layrz_icons_example/export_dialog.dart';
 import 'package:layrz_icons_example/layout.dart';
 import 'package:layrz_theme/layrz_theme.dart';
 
@@ -59,14 +60,10 @@ class _IconViewState extends State<IconView> {
                 final icon = icons[index];
 
                 return InkWell(
-                  onTap: () {
-                    Clipboard.setData(ClipboardData(text: 'LayrzIcons.${_toCamelCase(icon.name)}'));
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('Copied LayrzIcons.${_toCamelCase(icon.name)} to clipboard'),
-                      ),
-                    );
-                  },
+                  onTap: () => showDialog(
+                    context: context,
+                    builder: (context) => ExportDialog(icon: icon),
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.all(5).add(const EdgeInsets.symmetric(horizontal: 10)),
                     child: Row(
@@ -79,11 +76,6 @@ class _IconViewState extends State<IconView> {
                             style: Theme.of(context).textTheme.bodyMedium,
                           ),
                         ),
-                        const SizedBox(width: 20),
-                        Text(
-                          'LayrzIcons.${_toCamelCase(icon.name)}',
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.grey),
-                        ),
                       ],
                     ),
                   ),
@@ -94,11 +86,5 @@ class _IconViewState extends State<IconView> {
         ],
       ),
     );
-  }
-
-  String _toCamelCase(String text) {
-    final parts = text.split('-');
-    final first = parts.removeAt(0);
-    return first + parts.map((part) => part[0].toUpperCase() + part.substring(1)).join();
   }
 }

@@ -22,10 +22,11 @@ class Layout extends StatelessWidget {
     }
 
     return ThemedLayout(
-      style: ThemedLayoutStyle.sidebar,
       currentPath: currentPath,
       body: body,
       appTitle: 'layrz_icons',
+      homePath: '/allIcons',
+      enableNotifications: false,
       logo: const AppThemedAsset(
         normal: 'https://cdn.layrz.com/resources/layrz/logo/normal.png',
         white: 'https://cdn.layrz.com/resources/layrz/logo/white.png',
@@ -51,51 +52,68 @@ class Layout extends StatelessWidget {
           labelText: 'All icons',
           icon: LayrzIcons.solarOutlineAlbum,
         ),
-        ThemedNavigatorSeparator(type: ThemedSeparatorType.dots),
-        ThemedNavigatorLabel(labelText: 'Material design icons'),
-        ...[LayrzFamily.materialDesignIcons].map((family) {
-          return ThemedNavigatorPage(
-            path: '/${family.fontPackage}/${family.fontFamily.replaceAll(' ', '_')}',
-            labelText: family.fontFamily,
-            icon: family.icon,
-          );
-        }),
-        ThemedNavigatorSeparator(type: ThemedSeparatorType.dots),
-        ThemedNavigatorLabel(labelText: 'Solar icons'),
-        ...[LayrzFamily.solarIconsBold, LayrzFamily.solarIconsOutline].map((family) {
-          return ThemedNavigatorPage(
-            path: '/${family.fontPackage}/${family.fontFamily.replaceAll(' ', '_')}',
-            labelText: family.fontFamily,
-            icon: family.icon,
-          );
-        }),
-        ThemedNavigatorSeparator(type: ThemedSeparatorType.dots),
-        ThemedNavigatorLabel(labelText: 'Ionicons'),
-        ...[LayrzFamily.ionicons].map((family) {
-          return ThemedNavigatorPage(
-            path: '/${family.fontPackage}/${family.fontFamily.replaceAll(' ', '_')}',
-            labelText: family.fontFamily,
-            icon: family.icon,
-          );
-        }),
-        ThemedNavigatorSeparator(type: ThemedSeparatorType.dots),
-        ThemedNavigatorLabel(labelText: 'Iconsax Plus'),
-        ...[LayrzFamily.iconsaxPlusBold, LayrzFamily.iconsaxPlusBroken, LayrzFamily.iconsaxPlusLinear].map((family) {
-          return ThemedNavigatorPage(
-            path: '/${family.fontPackage}/${family.fontFamily.replaceAll(' ', '_')}',
-            labelText: family.fontFamily,
-            icon: family.icon,
-          );
-        }),
-        ThemedNavigatorSeparator(type: ThemedSeparatorType.dots),
-        ThemedNavigatorLabel(labelText: 'Font awesome'),
-        ...[LayrzFamily.fontAwesomeBrands, LayrzFamily.fontAwesomeSolid, LayrzFamily.fontAwesomeRegular].map((family) {
-          return ThemedNavigatorPage(
-            path: '/${family.fontPackage}/${family.fontFamily.replaceAll(' ', '_')}',
-            labelText: family.fontFamily,
-            icon: family.icon,
-          );
-        }),
+        ThemedNavigatorPage(
+          labelText: 'Material design icons',
+          path: '/${LayrzFamily.materialDesignIcons.fontPackage}',
+          icon: LayrzIcons.mdiHomeVariant,
+          children: [LayrzFamily.materialDesignIcons].map((family) {
+            return ThemedNavigatorPage(
+              path: '/${family.fontPackage}/${family.fontFamily.replaceAll(' ', '_')}',
+              labelText: family.fontFamily,
+              icon: family.icon,
+            );
+          }).toList(),
+        ),
+        ThemedNavigatorPage(
+          labelText: 'Solar icons',
+          icon: LayrzIcons.solarOutlineHomeAngle,
+          path: '/${LayrzFamily.solarIconsBold.fontPackage}',
+          children: [LayrzFamily.solarIconsBold, LayrzFamily.solarIconsOutline].map((family) {
+            return ThemedNavigatorPage(
+              path: '/${family.fontPackage}/${family.fontFamily.replaceAll(' ', '_')}',
+              labelText: family.fontFamily,
+              icon: family.icon,
+            );
+          }).toList(),
+        ),
+        ThemedNavigatorPage(
+          labelText: 'Ionicons',
+          path: '/${LayrzFamily.ionicons.fontPackage}',
+          icon: LayrzFamily.ionicons.icon,
+          children: [LayrzFamily.ionicons].map((family) {
+            return ThemedNavigatorPage(
+              path: '/${family.fontPackage}/${family.fontFamily.replaceAll(' ', '_')}',
+              labelText: family.fontFamily,
+              icon: family.icon,
+            );
+          }).toList(),
+        ),
+        ThemedNavigatorPage(
+          labelText: 'Iconsax Plus',
+          path: '/${LayrzFamily.iconsaxPlusBold.fontPackage}',
+          icon: LayrzFamily.iconsaxPlusBold.icon,
+          children:
+              [LayrzFamily.iconsaxPlusBold, LayrzFamily.iconsaxPlusBroken, LayrzFamily.iconsaxPlusLinear].map((family) {
+            return ThemedNavigatorPage(
+              path: '/${family.fontPackage}/${family.fontFamily.replaceAll(' ', '_')}',
+              labelText: family.fontFamily,
+              icon: family.icon,
+            );
+          }).toList(),
+        ),
+        ThemedNavigatorPage(
+          labelText: 'Font awesome',
+          path: '/${LayrzFamily.fontAwesomeBrands.fontPackage}',
+          icon: LayrzFamily.fontAwesomeSolid.icon,
+          children: [LayrzFamily.fontAwesomeBrands, LayrzFamily.fontAwesomeSolid, LayrzFamily.fontAwesomeRegular]
+              .map((family) {
+            return ThemedNavigatorPage(
+              path: '/${family.fontPackage}/${family.fontFamily.replaceAll(' ', '_')}',
+              labelText: family.fontFamily,
+              icon: family.icon,
+            );
+          }).toList(),
+        ),
       ],
     );
   }

@@ -12,14 +12,12 @@ dependencies:
   layrz_icons:
     path: ../
 
-  layrz_theme: ^7.0.10
+  layrz_theme: ^7.1.4
   layrz_models: any
   go_router: ^12.1.1
   url_launcher: ^6.3.1
 
 dev_dependencies:
-  integration_test:
-    sdk: flutter
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
@@ -28,3 +26,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+
+dependency_overrides:
+  layrz_icons:
+    path: ../

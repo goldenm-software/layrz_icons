@@ -1,15 +1,17 @@
-# Layrz Icons
+# layrz_icons
+[![Pub version](https://img.shields.io/pub/v/layrz_icons?logo=flutter)](https://pub.dev/packages/layrz_icons)
+[![popularity](https://img.shields.io/pub/popularity/layrz_icons?logo=dart)](https://pub.dev/packages/layrz_icons/score)
+[![likes](https://img.shields.io/pub/likes/layrz_icons?logo=flutter)](https://pub.dev/packages/layrz_icons/score)
+[![GitHub license](https://img.shields.io/github/license/goldenm-software/layrz_icons?logo=github)](https://github.com/goldenm-software/layrz_icons)
 
-Managed by Golden M, Inc.
+
+Sometimes, you need to use icons in your project, but using a single library? Maybe too boring, using multiple? Well, works but can be a mess. So, we created Layrz Icons, a simple and easy to use icon library, designed to combine multiple libraries in a single one, also adding a mapping object to convert any `IconData` into a string.
 
 ## Live demo / search
 You can check the icons and search for them on the [https://icons.layrz.com](https://icons.layrz.com)
 
-## Motivation
-Sometimes, you need to use icons in your project, but using a single library? Maybe too boring, using multiple? Well, works but can be a mess. So, we created Layrz Icons, a simple and easy to use icon library, designed to combine multiple libraries in a single one, also adding a mapping object to convert any `IconData` into a string.
-
 ## Supported libraries
-Right now, `layrz_icons` integrates three libraries:
+Right now, `layrz_icons` integrates these libraries:
 - [material_design_icons_flutter](https://pub.dev/packages/material_design_icons_flutter)
 - [font_awesome_flutter](https://pub.dev/packages/font_awesome_flutter)
 - [solar_icons](https://pub.dev/packages/solar_icons)
@@ -18,28 +20,30 @@ Right now, `layrz_icons` integrates three libraries:
 
 Many thanks to the developers of these libraries, they are awesome!
 
-## --no-tree-shake-icons is required? / Compilation failures
-You need as mandatory to use the `--no-tree-shake-icons` flag in your Flutter project. Otherwise you will not be able to compile your app.
-
 ## Disclaimer
 We don't attempt to copy or steal any icon, we just want to make it easier to use them in your projects. Also, if you want to add a new icon library, please make sure to check the license of the library, we don't want to have any legal issues.
 
-## Other projects
-By us, we have multiple open source libraries on multiple languages, for Dart and Flutter:
-- [layrz_theme](https://pub.dev/packages/layrz_theme),a library to create themes for your Flutter app, like a classic CSS framework
-- [layrz_models](https://pub.dev/packages/layrz_models), handle the entities from Layrz API in a simple way.
-- [layrz_logging](https://pub.dev/packages/layrz_logging), logging never was so easy. A simple and easy to use logging library.
-- [wiatag_kit](https://pub.dev/packages/wiatag_kit), convert any mobile device into a GPS tracker, using the WiaTag from Gurtam, Inc.
-- [wialon](https://pub.dev/packages/wialon), a library to connect to Wialon Remote API, from Gurtam, Inc.
+## FAQ
 
-Also, check out our other packages on [PyPi of Golden M](https://pypi.org/user/goldenm/), [PyPi of Layrz](https://pypi.org/user/layrz-software/), and [NPM of Golden M](https://www.npmjs.com/~goldenm) or [RubyGems of Golden M](https://rubygems.org/profiles/goldenm).
+### Why is this package called `layrz_icons`?
+All packages developed by [Layrz](https://layrz.com) are prefixed with `layrz_`, check out our other packages on [pub.dev](https://pub.dev/publishers/goldenm.com/packages).
 
-## Interested in our work?
-Golden M is a software/hardware development company what is working on a new, innovative and disruptive technologies.
-For more information, contact us at [sales@layrz.com](mailto:sales@layrz.com)
+## --no-tree-shake-icons is required?
+You need as mandatory to use the `--no-tree-shake-icons` flag in your Flutter project. Otherwise you will not be able to compile your app.
+
+### I need to pay to use this package?
+<b>No!</b> This library is free and open source, you can use it in your projects without any cost, but if you want to support us, give us a thumbs up here in [pub.dev](https://pub.dev/packages/layrz_icons) and star our [Repository](https://github.com/goldenm-software/layrz_icons)!
+
+### Can I contribute to this package?
+<b>Yes!</b> We are open to contributions, feel free to open a pull request or an issue on the [Repository](https://github.com/goldenm-software/layrz_icons)!
+
+### I have a question, how can I contact you?
+If you need more assistance, you open an issue on the [Repository](https://github.com/goldenm-software/layrz_icons) and we're happy to help you :)
 
 ## License
-This project is under MIT License, for more information, check out the `LICENCE`
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## To-do's
-- [ ] Create an export for the icons on the example
+This project is maintained by [Golden M](https://goldenm.com) with authorization of [Layrz LTD](https://layrz.com).
+
+## Who are you? / Want to work with us?
+<b>Golden M</b> is a software and hardware development company what is working on a new, innovative and disruptive technologies. For more information, contact us at [sales@goldenm.com](mailto:sales@goldenm.com) or via WhatsApp at [+(507)-6979-3073](https://wa.me/50769793073?text="From%20layrz_icons%20flutter%20library.%20Hello").

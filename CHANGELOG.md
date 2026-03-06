@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.7
+
+- Build site with Flutter 3.41.4
+
 ## 1.0.6
 
 - Added new icon library `flutty_solar_icons` to get more variants of the solar icons, now you can choose between `solar_icons` and `flutty_solar_icons` for the solar icons.

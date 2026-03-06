@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:layrz_icons/layrz_icons.dart';
-import 'package:layrz_models/layrz_models.dart';
 import 'package:layrz_theme/layrz_theme.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class Layout extends StatelessWidget {
   final Widget body;
-  const Layout({
-    super.key,
-    required this.body,
-  });
+  const Layout({super.key, required this.body});
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +18,9 @@ class Layout extends StatelessWidget {
     }
 
     return ThemedLayout(
+      style: .sidebar,
+      mobileStyle: .appBar,
+      userName: "Layrz Icons Showcase",
       currentPath: currentPath,
       body: body,
       appTitle: 'layrz_icons',
@@ -35,23 +34,18 @@ class Layout extends StatelessWidget {
         normal: 'https://cdn.layrz.com/resources/layrz/favicon/normal.png',
         white: 'https://cdn.layrz.com/resources/layrz/favicon/white.png',
       ),
+      isBackEnabled: false,
       onNavigatorPop: context.pop,
       onNavigatorPush: context.go,
       items: [
         ThemedNavigatorAction(
           labelText: 'GitHub repository',
           icon: LayrzIcons.faBrandsGithub,
-          onTap: () => launchUrlString(
-            'https://github.com/goldenm-software/layrz_icons',
-            mode: LaunchMode.externalApplication,
-          ),
+          onTap: () =>
+              launchUrlString('https://github.com/goldenm-software/layrz_icons', mode: LaunchMode.externalApplication),
         ),
         ThemedNavigatorSeparator(type: ThemedSeparatorType.dots),
-        ThemedNavigatorPage(
-          path: '/allIcons',
-          labelText: 'All icons',
-          icon: LayrzIcons.solarOutlineAlbum,
-        ),
+        ThemedNavigatorPage(path: '/allIcons', labelText: 'All icons', icon: LayrzIcons.solarOutlineAlbum),
         ThemedNavigatorPage(
           labelText: 'Material design icons',
           path: '/${LayrzFamily.materialDesignIcons.fontPackage}',
@@ -77,6 +71,24 @@ class Layout extends StatelessWidget {
           }).toList(),
         ),
         ThemedNavigatorPage(
+          labelText: 'Flutty Solar icons',
+          icon: LayrzIcons.fluttySolarBoldHomeInEssentionalUi,
+          path: '/${LayrzFamily.fluttySolarBold.fontPackage}',
+          children:
+              [
+                LayrzFamily.fluttySolarBold,
+                LayrzFamily.fluttySolarBroken,
+                LayrzFamily.fluttySolarLinear,
+                LayrzFamily.fluttySolarOutline,
+              ].map((family) {
+                return ThemedNavigatorPage(
+                  path: '/${family.fontPackage}/${family.fontFamily.replaceAll(' ', '_')}',
+                  labelText: family.fontFamily,
+                  icon: family.icon,
+                );
+              }).toList(),
+        ),
+        ThemedNavigatorPage(
           labelText: 'Ionicons',
           path: '/${LayrzFamily.ionicons.fontPackage}',
           icon: LayrzFamily.ionicons.icon,
@@ -92,8 +104,9 @@ class Layout extends StatelessWidget {
           labelText: 'Iconsax Plus',
           path: '/${LayrzFamily.iconsaxPlusBold.fontPackage}',
           icon: LayrzFamily.iconsaxPlusBold.icon,
-          children:
-              [LayrzFamily.iconsaxPlusBold, LayrzFamily.iconsaxPlusBroken, LayrzFamily.iconsaxPlusLinear].map((family) {
+          children: [LayrzFamily.iconsaxPlusBold, LayrzFamily.iconsaxPlusBroken, LayrzFamily.iconsaxPlusLinear].map((
+            family,
+          ) {
             return ThemedNavigatorPage(
               path: '/${family.fontPackage}/${family.fontFamily.replaceAll(' ', '_')}',
               labelText: family.fontFamily,
@@ -105,8 +118,9 @@ class Layout extends StatelessWidget {
           labelText: 'Font awesome',
           path: '/${LayrzFamily.fontAwesomeBrands.fontPackage}',
           icon: LayrzFamily.fontAwesomeSolid.icon,
-          children: [LayrzFamily.fontAwesomeBrands, LayrzFamily.fontAwesomeSolid, LayrzFamily.fontAwesomeRegular]
-              .map((family) {
+          children: [LayrzFamily.fontAwesomeBrands, LayrzFamily.fontAwesomeSolid, LayrzFamily.fontAwesomeRegular].map((
+            family,
+          ) {
             return ThemedNavigatorPage(
               path: '/${family.fontPackage}/${family.fontFamily.replaceAll(' ', '_')}',
               labelText: family.fontFamily,
@@ -147,10 +161,22 @@ extension Icons on LayrzFamily {
         return LayrzIcons.faBrandsChrome;
 
       case LayrzFamily.fontAwesomeSolid:
-        return LayrzIcons.faSolidHouse;
+        return LayrzIcons.faSolidHouseChimney;
 
       case LayrzFamily.fontAwesomeRegular:
         return LayrzIcons.faRegularBuilding;
+
+      case LayrzFamily.fluttySolarBold:
+        return LayrzIcons.fluttySolarBoldHomeInEssentionalUi;
+
+      case LayrzFamily.fluttySolarBroken:
+        return LayrzIcons.fluttySolarBrokenHomeInEssentionalUi;
+
+      case LayrzFamily.fluttySolarLinear:
+        return LayrzIcons.fluttySolarLinearHomeInEssentionalUi;
+
+      case LayrzFamily.fluttySolarOutline:
+        return LayrzIcons.fluttySolarOutlineHomeInEssentionalUi;
 
       default:
         return LayrzIcons.mdiHomeVariant;

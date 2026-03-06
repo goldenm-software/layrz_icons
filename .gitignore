@@ -42,3 +42,5 @@ stats.py
 .fvm/
 
 .vscode/settings.json
+
+cmd.exe

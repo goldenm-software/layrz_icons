@@ -3,7 +3,8 @@ description: "Demonstrates how to use the layrz_icons plugin."
 publish_to: 'none'
 
 environment:
-  sdk: ^3.5.4
+  sdk: ">=3.11.0 <4.0.0"
+  flutter: ">=3.41.0"
 
 dependencies:
   flutter:
@@ -12,15 +13,15 @@ dependencies:
   layrz_icons:
     path: ../
 
-  layrz_theme: ^7.1.4
+  layrz_theme: ^7.5.17
   layrz_models: any
-  go_router: ^12.1.1
-  url_launcher: ^6.3.1
+  go_router: ^17.1.0
+  url_launcher: ^6.3.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^4.0.0
+  flutter_lints: ^6.0.0
 
 flutter:
   uses-material-design: true

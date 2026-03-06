@@ -1,4 +1,4 @@
-library layrz_icons;
+library;
 
 import 'package:flutter/widgets.dart';
 
@@ -24,6 +24,7 @@ enum LayrzFamily {
   materialDesignIcons,
   solarIconsBold,
   solarIconsOutline,
+  solarIconsBroken,
   fontAwesomeBrands,
   fontAwesomeSolid,
   fontAwesomeRegular,
@@ -38,6 +39,12 @@ enum LayrzFamily {
   iconsaxPlusBold,
   iconsaxPlusBroken,
   iconsaxPlusLinear,
+  fluttySolarBold,
+  fluttySolarBroken,
+  fluttySolarLinear,
+  fluttySolarOutline,
+  fluttySolarBoldDuotone,
+  fluttySolarLineDuotone,
   ;
 
   String get fontFamily {
@@ -48,6 +55,8 @@ enum LayrzFamily {
         return 'SolarIconsBold';
       case LayrzFamily.solarIconsOutline:
         return 'SolarIconsOutline';
+      case LayrzFamily.solarIconsBroken:
+        return 'SolarIconsBroken';
       case LayrzFamily.fontAwesomeBrands:
         return 'FontAwesomeBrands';
       case LayrzFamily.fontAwesomeSolid:
@@ -76,6 +85,18 @@ enum LayrzFamily {
         return 'IconsaxPlusBroken';
       case LayrzFamily.iconsaxPlusLinear:
         return 'IconsaxPlusLinear';
+      case LayrzFamily.fluttySolarBold:
+        return 'SolarBold';
+      case LayrzFamily.fluttySolarBroken:
+        return 'SolarBroken';
+      case LayrzFamily.fluttySolarLinear:
+        return 'SolarLinear';
+      case LayrzFamily.fluttySolarOutline:
+        return 'SolarOutline';
+      case LayrzFamily.fluttySolarBoldDuotone:
+        return 'SolarBoldDuotonePrimary';
+      case LayrzFamily.fluttySolarLineDuotone:
+        return 'SolarLineDuotonePrimary';
     }
   }
 
@@ -85,6 +106,7 @@ enum LayrzFamily {
         return 'material_design_icons_flutter';
       case LayrzFamily.solarIconsBold:
       case LayrzFamily.solarIconsOutline:
+      case LayrzFamily.solarIconsBroken:
         return 'solar_icons';
       case LayrzFamily.fontAwesomeBrands:
       case LayrzFamily.fontAwesomeSolid:
@@ -103,6 +125,13 @@ enum LayrzFamily {
       case LayrzFamily.iconsaxPlusBroken:
       case LayrzFamily.iconsaxPlusLinear:
         return 'iconsax_plus';
+      case LayrzFamily.fluttySolarBold:
+      case LayrzFamily.fluttySolarBroken:
+      case LayrzFamily.fluttySolarLinear:
+      case LayrzFamily.fluttySolarOutline:
+      case LayrzFamily.fluttySolarBoldDuotone:
+      case LayrzFamily.fluttySolarLineDuotone:
+        return 'flutty_solar_icons';
     }
   }
 }

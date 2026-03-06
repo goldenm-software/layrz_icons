@@ -30,11 +30,13 @@ class _ExportDialogState extends State<ExportDialog> {
         padding: const EdgeInsets.all(16),
         decoration: generateContainerElevation(context: context, elevation: 5, radius: 16),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: .min,
           children: [
             Text(
               "Export ${widget.icon.name}",
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontWeight: .bold),
+              maxLines: 2,
+              textAlign: .center,
             ),
             const SizedBox(height: 8),
             RepaintBoundary(
@@ -62,11 +64,13 @@ class _ExportDialogState extends State<ExportDialog> {
                     color: Colors.blue,
                     onTap: () {
                       Clipboard.setData(ClipboardData(text: 'LayrzIcons.${_toCamelCase(widget.icon.name)}'));
-                      ThemedSnackbarMessenger.of(context).showSnackbar(ThemedSnackbar(
-                        color: Colors.green,
-                        icon: LayrzIcons.solarOutlineCopy,
-                        message: 'Copied to clipboard',
-                      ));
+                      ThemedSnackbarMessenger.of(context).showSnackbar(
+                        ThemedSnackbar(
+                          color: Colors.green,
+                          icon: LayrzIcons.solarOutlineCopy,
+                          message: 'Copied to clipboard',
+                        ),
+                      );
                     },
                   ),
                 ),
@@ -89,11 +93,13 @@ class _ExportDialogState extends State<ExportDialog> {
 
                         if (targetRatio == null) {
                           if (!context.mounted) return;
-                          ThemedSnackbarMessenger.of(context).showSnackbar(ThemedSnackbar(
-                            color: Colors.red,
-                            icon: LayrzIcons.solarOutlineCloseSquare,
-                            message: "You don't picked a target size",
-                          ));
+                          ThemedSnackbarMessenger.of(context).showSnackbar(
+                            ThemedSnackbar(
+                              color: Colors.red,
+                              icon: LayrzIcons.solarOutlineCloseSquare,
+                              message: "You don't picked a target size",
+                            ),
+                          );
                           return;
                         }
 
@@ -108,11 +114,13 @@ class _ExportDialogState extends State<ExportDialog> {
                       } catch (e) {
                         debugPrint('Failed to export image: $e');
                         if (!context.mounted) return;
-                        ThemedSnackbarMessenger.of(context).showSnackbar(ThemedSnackbar(
-                          color: Colors.red,
-                          icon: LayrzIcons.solarOutlineCloseSquare,
-                          message: 'Failed to export image',
-                        ));
+                        ThemedSnackbarMessenger.of(context).showSnackbar(
+                          ThemedSnackbar(
+                            color: Colors.red,
+                            icon: LayrzIcons.solarOutlineCloseSquare,
+                            message: 'Failed to export image',
+                          ),
+                        );
                         return;
                       }
                     },

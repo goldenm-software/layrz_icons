@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:layrz_icons/layrz_icons.dart';
 import 'package:layrz_icons_example/router.dart';
 import 'package:layrz_models/layrz_models.dart';
 import 'package:layrz_theme/layrz_theme.dart';
 
-const titleFont = AppFont(source: FontSource.google, name: 'Ubuntu');
-const bodyFont = AppFont(source: FontSource.google, name: 'Ubuntu');
+const kFont = AppFont(source: .google, name: 'Ubuntu Mono');
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await ThemedFontHandler.preloadFont(titleFont);
-  await ThemedFontHandler.preloadFont(bodyFont);
+  await ThemedFontHandler.preloadFont(kFont);
 
   runApp(const MyApp());
 }
@@ -28,12 +25,10 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      theme: generateLightTheme(titleFont: titleFont, bodyFont: bodyFont),
+      theme: generateLightTheme(titleFont: kFont, bodyFont: kFont),
       routerConfig: router,
       builder: (context, child) {
-        return ThemedSnackbarMessenger(
-          child: child ?? const SizedBox(),
-        );
+        return ThemedSnackbarMessenger(child: child ?? const SizedBox());
       },
     );
   }

@@ -17,6 +17,7 @@ Right now, `layrz_icons` integrates these libraries:
 - [solar_icons](https://pub.dev/packages/solar_icons)
 - [ionicons](https://pub.dev/packages/ionicons)
 - [iconsax_plus](https://pub.dev/packages/iconsax_plus)
+- [flutty_solar_icons](https://pub.dev/packages/flutty_solar_icons)
 
 Many thanks to the developers of these libraries, they are awesome!
 

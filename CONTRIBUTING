@@ -1,0 +1,93 @@
+# Conventional Commits
+
+All commit messages MUST follow the Conventional Commits specification:
+
+**Format:**
+
+```
+<type>: <description>
+
+[optional body]
+[extra <type>: <description>]
+
+[BREAKING CHANGE: <description>]
+
+[optional co-authors(s) (Can be human or AIs)]
+```
+
+**Required Types:**
+
+- `feat`: New feature
+- `fix`: Bug fix
+- `docs`: Documentation changes
+- `perf`: Performance improvement
+- `refactor`: Code refactoring (no functional changes)
+- `test`: Adding or updating tests
+- `sec`: Security patches (e.g., CVE fixes)
+- `lab`: Labs / exploratory work
+- `exp`: Experimental features or prototypes
+- `deps`: Dependency updates
+- `revert`: Reverting previous changes
+- `chore`: Maintenance tasks (excluded from changelog)
+- `style`: Code style changes (excluded from changelog)
+
+**Rules:**
+
+- Type MUST be lowercase
+- Colon and space MUST follow the type
+- Description MUST be present, concise, and imperative mood
+- Description MUST NOT end with a period
+- Optional scope can be added: `feat(auth): Add OAuth2 support`
+- Breaking changes: Add `BREAKING CHANGE:` in footer
+
+**Simple examples:**
+
+```
+feat: Add passkey authentication support
+fix: Resolve MFA validation timing issue
+docs: Update web platform setup instructions
+perf: Optimize GraphQL query caching
+sec: Patch CVE-2026-12345 in jwt dependency
+lab: Prototype new caching layer with Redis
+exp: Test alternative auth flow with WebAuthn
+deps: Bump axios from 1.6.0 to 1.7.2
+revert: Revert OAuth2 flow changes
+```
+
+**Multi-declaration example:**
+
+A single commit can declare multiple changes in its body. The subject line is the primary
+declaration, and additional `<type>: <description>` lines in the body are each categorized
+independently in the changelog:
+
+```
+feat: Add OAuth2 authentication
+
+sec: Upgrade jwt library to fix CVE-2026-12345
+docs: Add OAuth2 setup instructions
+fix: Resolve token refresh race condition
+
+Co-authored-by: Kenny Mochizuki <PHKenny@users.noreply.github.com>
+Co-authored-by: AI Assistant <no-reply@ai.com>
+```
+
+This commit generates four separate changelog entries — one under Features, one under Security,
+one under Documentation, and one under Bug Fixes.
+
+**Breaking change examples:**
+
+As a subject line:
+
+```
+BREAKING CHANGE: Replace session-based auth with JWT
+```
+
+As a footer in the commit body:
+
+```
+feat: Replace session-based auth with JWT
+
+BREAKING CHANGE: All endpoints now require Bearer token authentication
+
+Co-authored-by: Kenny Mochizuki <PHKenny@users.noreply.github.com>
+```

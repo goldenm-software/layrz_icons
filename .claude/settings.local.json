@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wc -l /e/Projects-Windows/layrz_icons/lib/src/*.dart)",
+      "Bash(xargs cat)",
+      "Bash(go build -o /dev/null ./...)",
+      "WebFetch(domain:pub.dev)",
+      "WebFetch(domain:github.com)",
+      "Bash(flutter pub get)"
+    ]
+  }
+}

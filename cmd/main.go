@@ -74,44 +74,9 @@ func main() {
 		log.Fatalf("Failed to scan MDI: %v", err)
 	}
 
-	solarBold, err := tools.ScanSolarIconsBold(absPubPath, lock)
-	if err != nil {
-		log.Fatalf("Failed to scan Solar Bold: %v", err)
-	}
-
-	solarOutline, err := tools.ScanSolarIconsOutline(absPubPath, lock)
-	if err != nil {
-		log.Fatalf("Failed to scan Solar Outline: %v", err)
-	}
-
-	// solarBroken, err := tools.ScanSolarIconsBroken(absPubPath, lock)
-	// if err != nil {
-	// 	log.Fatalf("Failed to scan Solar Broken: %v", err)
-	// }
-
 	fontAwesome, err := tools.ScanFontAwesomeFlutter(absPubPath, lock)
 	if err != nil {
 		log.Fatalf("Failed to scan Font Awesome: %v", err)
-	}
-
-	ionicons, err := tools.ScanIonicons(absPubPath, lock)
-	if err != nil {
-		log.Fatalf("Failed to scan Ionicons: %v", err)
-	}
-
-	iconsaxBold, err := tools.ScanIconsaxBold(absPubPath, lock)
-	if err != nil {
-		log.Fatalf("Failed to scan Iconsax Bold: %v", err)
-	}
-
-	iconsaxBroken, err := tools.ScanIconsaxBroken(absPubPath, lock)
-	if err != nil {
-		log.Fatalf("Failed to scan Iconsax Broken: %v", err)
-	}
-
-	iconsaxLinear, err := tools.ScanIconsaxLinear(absPubPath, lock)
-	if err != nil {
-		log.Fatalf("Failed to scan Iconsax Linear: %v", err)
 	}
 
 	fluttySolarIcons, err := tools.ScanFluttySolarIcons(absPubPath, lock)
@@ -122,15 +87,8 @@ func main() {
 	fmt.Println("Icon mappings generated.")
 
 	m := &tools.AllMappings{
-		MDI:          mdi,
-		SolarBold:    solarBold,
-		SolarOutline: solarOutline,
-		// SolarBroken:      solarBroken,
+		MDI:              mdi,
 		FontAwesome:      fontAwesome,
-		Ionicons:         ionicons,
-		IconsaxBold:      iconsaxBold,
-		IconsaxBroken:    iconsaxBroken,
-		IconsaxLinear:    iconsaxLinear,
 		FluttySolarIcons: fluttySolarIcons,
 	}
 

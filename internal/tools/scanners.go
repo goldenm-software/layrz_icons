@@ -38,94 +38,60 @@ func readLines(path string) ([]string, error) {
 }
 
 func ScanMaterialDesignIconsFlutter(pubPath string, lock *PubspecLock) ([]IconEntry, error) {
-	pkgDir, err := lock.PackageDir("material_design_icons_flutter")
+	pkgDir, err := lock.PackageDir("flutter_material_design_icons")
 	if err != nil {
 		return nil, err
 	}
-	dartFile := filepath.Join(pubPath, pkgDir, "lib", "icon_map.dart")
+	dartFile := filepath.Join(pubPath, pkgDir, "lib", "src", "icons.enum.dart")
 	lines, err := readLines(dartFile)
 	if err != nil {
 		return nil, fmt.Errorf("reading MDI file: %w", err)
 	}
 
-	searchRegex := regexp.MustCompile(`^'(\w+)': _MdiIconData\(`)
+	// The new package declares each icon as a multi-line block:
+	//   static const IconData abTesting = IconData(
+	//     983497,
+	//     fontFamily: 'Material Design Icons',
+	//     fontPackage: 'flutter_material_design_icons',
+	//   );
+	// The header line names the icon (and may be preceded by @Deprecated / doc
+	// comments, which we ignore); the next non-empty line is the decimal codepoint.
+	// Dart reserved words (null, switch) are declared with a trailing "$"
+	// (e.g. "null$", "switch$"); strip it so the kebab key matches the bare word.
+	headerRegex := regexp.MustCompile(`^static const IconData (\w+)\$? = IconData\($`)
 	seen := make(map[string]bool)
 	var result []IconEntry
+	var pendingName string
 
 	for _, line := range lines {
 		line = strings.TrimSpace(line)
-		matches := searchRegex.FindStringSubmatch(line)
-		if matches == nil {
-			continue
-		}
-		codePoint := strings.Split(strings.Split(line, "_MdiIconData(")[1], ")")[0]
-		name := ToKebabCase(matches[1])
 
-		if seen[name] {
-			fmt.Printf("Material Design Icons Flutter: Duplicated icon name: %s\n", name)
-			continue
-		}
-		seen[name] = true
-		result = append(result, IconEntry{Name: name, CodePoint: codePoint})
-	}
-
-	fmt.Printf("Mapped %d icons from Material Design Icons Flutter\n", len(result))
-	return result, nil
-}
-
-func scanSolarIcons(pubPath string, lock *PubspecLock, variant, dartFileName string) ([]IconEntry, error) {
-	pkgDir, err := lock.PackageDir("solar_icons")
-	if err != nil {
-		return nil, err
-	}
-	dartFile := filepath.Join(pubPath, pkgDir, "lib", "src", dartFileName)
-	lines, err := readLines(dartFile)
-	if err != nil {
-		return nil, fmt.Errorf("reading Solar Icons %s file: %w", variant, err)
-	}
-
-	seen := make(map[string]bool)
-	var result []IconEntry
-	var buffer string
-
-	for _, line := range lines {
-		line = strings.TrimSpace(line)
-		if strings.HasPrefix(line, "static const SolarIconsData") {
-			buffer = line
-			continue
-		}
-		if buffer != "" {
-			completeLine := buffer + line
-			buffer = ""
-			completeLine = strings.TrimSpace(strings.Replace(completeLine, "static const SolarIconsData", "", 1))
-			name := strings.TrimSpace(strings.Split(completeLine, "=")[0])
-			name = ToKebabCase(name)
-			codePointPart := strings.Split(completeLine, "=")[1]
-			codePoint := strings.TrimSpace(strings.Split(strings.Replace(codePointPart, "SolarIconsData(", "", 1), ",")[0])
+		if pendingName != "" {
+			if line == "" {
+				continue
+			}
+			codePoint := strings.TrimSpace(strings.TrimSuffix(line, ","))
+			name := pendingName
+			pendingName = ""
 
 			if seen[name] {
-				fmt.Printf("Solar Icons %s: Duplicated icon name: %s\n", variant, name)
+				fmt.Printf("Material Design Icons: Duplicated icon name: %s\n", name)
 				continue
 			}
 			seen[name] = true
 			result = append(result, IconEntry{Name: name, CodePoint: codePoint})
+			continue
 		}
+
+		matches := headerRegex.FindStringSubmatch(line)
+		if matches == nil {
+			continue
+		}
+		pendingName = ToKebabCase(matches[1])
 	}
 
-	fmt.Printf("Mapped %d icons from Solar Icons %s\n", len(result), variant)
+	fmt.Printf("Mapped %d icons from Material Design Icons\n", len(result))
 	return result, nil
-}
-
-func ScanSolarIconsBold(pubPath string, lock *PubspecLock) ([]IconEntry, error) {
-	return scanSolarIcons(pubPath, lock, "Bold", "solar_icons_bold.dart")
-}
-
-func ScanSolarIconsOutline(pubPath string, lock *PubspecLock) ([]IconEntry, error) {
-	return scanSolarIcons(pubPath, lock, "Outline", "solar_icons_outline.dart")
-}
-
-func ScanSolarIconsBroken(pubPath string, lock *PubspecLock) ([]IconEntry, error) {
-	return scanSolarIcons(pubPath, lock, "Broken", "solar_icons_broken.dart")
 }
 
 func ScanFontAwesomeFlutter(pubPath string, lock *PubspecLock) (*FontAwesomeMapping, error) {
@@ -139,11 +105,23 @@ func ScanFontAwesomeFlutter(pubPath string, lock *PubspecLock) (*FontAwesomeMapp
 		return nil, fmt.Errorf("reading Font Awesome file: %w", err)
 	}
 
+	// font_awesome_flutter v11 declares each icon as a nested block. The mode is
+	// carried by the fontFamily string ('FontAwesome<Mode>'), not the constructor:
+	//   static const FaIconData github = FaIconData(
+	//     IconData(
+	//       0xf09b,
+	//       fontFamily: 'FontAwesomeBrands',
+	//       fontPackage: 'font_awesome_flutter',
+	//     ),
+	//   );
+	// The free package ships only Brands, Regular and Solid.
 	validModes := map[string]bool{
-		"Brands": true, "Solid": true, "Regular": true, "Light": true,
-		"Duotone": true, "Thin": true, "SharpThin": true, "SharpLight": true,
-		"SharpRegular": true, "SharpSolid": true,
+		"Brands": true, "Regular": true, "Solid": true,
 	}
+
+	headerRegex := regexp.MustCompile(`^static const FaIconData (\w+) = FaIconData\($`)
+	codePointRegex := regexp.MustCompile(`^(0x[0-9a-fA-F]+),?$`)
+	familyRegex := regexp.MustCompile(`^fontFamily: 'FontAwesome(\w+)',?$`)
 
 	result := &FontAwesomeMapping{
 		Icons: make(map[string][]IconEntry),
@@ -152,26 +130,41 @@ func ScanFontAwesomeFlutter(pubPath string, lock *PubspecLock) (*FontAwesomeMapp
 	modeOrder := make(map[string]bool)
 
 	totalCount := 0
+	var pendingName, pendingCodePoint string
+
 	for _, line := range lines {
 		line = strings.TrimSpace(line)
-		if !strings.HasPrefix(line, "static const IconData") {
-			continue
-		}
-		line = strings.TrimSpace(strings.Replace(line, "static const IconData", "", 1))
-		name := strings.TrimSpace(strings.Split(line, "=")[0])
-		name = ToKebabCase(name)
-		codePointFull := strings.TrimSpace(strings.TrimSuffix(strings.Split(line, "=")[1], ";"))
 
-		if !strings.HasPrefix(codePointFull, "IconData") {
+		if matches := headerRegex.FindStringSubmatch(line); matches != nil {
+			pendingName = ToKebabCase(matches[1])
+			pendingCodePoint = ""
 			continue
 		}
 
-		mode := strings.Replace(strings.Split(codePointFull, "(")[0], "IconData", "", 1)
+		if pendingName == "" {
+			continue
+		}
+
+		if pendingCodePoint == "" {
+			if matches := codePointRegex.FindStringSubmatch(line); matches != nil {
+				pendingCodePoint = matches[1]
+			}
+			continue
+		}
+
+		matches := familyRegex.FindStringSubmatch(line)
+		if matches == nil {
+			continue
+		}
+		mode := matches[1]
+		name := pendingName
+		codePoint := pendingCodePoint
+		pendingName = ""
+		pendingCodePoint = ""
+
 		if !validModes[mode] {
 			continue
 		}
-
-		codePoint := strings.TrimSpace(strings.Split(strings.Split(codePointFull, "(")[1], ")")[0])
 
 		if seenPerMode[mode] == nil {
 			seenPerMode[mode] = make(map[string]bool)
@@ -192,90 +185,6 @@ func ScanFontAwesomeFlutter(pubPath string, lock *PubspecLock) (*FontAwesomeMapp
 
 	fmt.Printf("Mapped %d icons from Font Awesome Flutter\n", totalCount)
 	return result, nil
-}
-
-func ScanIonicons(pubPath string, lock *PubspecLock) ([]IconEntry, error) {
-	pkgDir, err := lock.PackageDir("ionicons")
-	if err != nil {
-		return nil, err
-	}
-	dartFile := filepath.Join(pubPath, pkgDir, "lib", "ionicons.dart")
-	lines, err := readLines(dartFile)
-	if err != nil {
-		return nil, fmt.Errorf("reading Ionicons file: %w", err)
-	}
-
-	var result []IconEntry
-	for _, line := range lines {
-		line = strings.TrimSpace(line)
-		if !strings.HasPrefix(line, "static const") {
-			continue
-		}
-		line = strings.TrimSpace(strings.Replace(line, "static const", "", 1))
-		name := strings.TrimSpace(strings.Split(line, "=")[0])
-		name = ToKebabCase(name)
-		codePointFull := strings.TrimSuffix(strings.TrimSpace(strings.Split(line, "=")[1]), ";")
-		codePoint := strings.TrimSpace(strings.Split(strings.Split(codePointFull, "(")[1], ")")[0])
-		result = append(result, IconEntry{Name: name, CodePoint: codePoint})
-	}
-
-	fmt.Printf("Mapped %d icons from Ionicons\n", len(result))
-	return result, nil
-}
-
-func scanIconsax(pubPath string, lock *PubspecLock, variant, dartFileName string) ([]IconEntry, error) {
-	pkgDir, err := lock.PackageDir("iconsax_plus")
-	if err != nil {
-		return nil, err
-	}
-	dartFile := filepath.Join(pubPath, pkgDir, "lib", "src", dartFileName)
-	lines, err := readLines(dartFile)
-	if err != nil {
-		return nil, fmt.Errorf("reading Iconsax %s file: %w", variant, err)
-	}
-
-	seen := make(map[string]bool)
-	var result []IconEntry
-	var buffer string
-
-	for _, line := range lines {
-		line = strings.TrimSpace(line)
-		if strings.HasPrefix(line, "static const IconData") {
-			buffer = line
-			continue
-		}
-		if buffer != "" {
-			completeLine := buffer + line
-			buffer = ""
-			completeLine = strings.TrimSpace(strings.Replace(completeLine, "static const IconData", "", 1))
-			name := strings.TrimSpace(strings.Split(completeLine, "=")[0])
-			name = ToKebabCase(name)
-			codePointPart := strings.Split(completeLine, "=")[1]
-			codePoint := strings.TrimSpace(strings.Split(strings.Replace(codePointPart, "IconData(", "", 1), ",")[0])
-
-			if seen[name] {
-				fmt.Printf("Iconsax Plus %s: Duplicated icon name: %s\n", variant, name)
-				continue
-			}
-			seen[name] = true
-			result = append(result, IconEntry{Name: name, CodePoint: codePoint})
-		}
-	}
-
-	fmt.Printf("Mapped %d icons from IconsaxPlus%s\n", len(result), variant)
-	return result, nil
-}
-
-func ScanIconsaxBold(pubPath string, lock *PubspecLock) ([]IconEntry, error) {
-	return scanIconsax(pubPath, lock, "Bold", "iconsax_plus_bold.dart")
-}
-
-func ScanIconsaxBroken(pubPath string, lock *PubspecLock) ([]IconEntry, error) {
-	return scanIconsax(pubPath, lock, "Broken", "iconsax_plus_broken.dart")
-}
-
-func ScanIconsaxLinear(pubPath string, lock *PubspecLock) ([]IconEntry, error) {
-	return scanIconsax(pubPath, lock, "Linear", "iconsax_plus_linear.dart")
 }
 
 func ScanFluttySolarIcons(pubPath string, lock *PubspecLock) ([]IconEntry, error) {

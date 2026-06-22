@@ -12,12 +12,9 @@ You can check the icons and search for them on the [https://icons.layrz.com](htt
 
 ## Supported libraries
 Right now, `layrz_icons` integrates these libraries:
-- [material_design_icons_flutter](https://pub.dev/packages/material_design_icons_flutter)
-- [font_awesome_flutter](https://pub.dev/packages/font_awesome_flutter)
-- [solar_icons](https://pub.dev/packages/solar_icons)
-- [ionicons](https://pub.dev/packages/ionicons)
-- [iconsax_plus](https://pub.dev/packages/iconsax_plus)
-- [flutty_solar_icons](https://pub.dev/packages/flutty_solar_icons)
+- [flutter_material_design_icons](https://pub.dev/packages/flutter_material_design_icons)
+- [font_awesome_flutter](https://pub.dev/packages/font_awesome_flutter) (Brands, Regular and Solid families)
+- [flutty_solar_icons](https://pub.dev/packages/flutty_solar_icons) (exposed as `solar{Weight}`: Bold, Broken, Linear, Outline)
 
 Many thanks to the developers of these libraries, they are awesome!
 

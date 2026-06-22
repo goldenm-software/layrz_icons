@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.1
+
+- Bump the example app's `layrz_theme` to `^7.6.0` and `layrz_models` to `^3.11.0`, which adopt the renamed `solar*` icon getters so the demo site builds against `layrz_icons` 1.1.x.
+
 ## 1.1.0
 
 - **BREAKING:** Replaced `material_design_icons_flutter` with `flutter_material_design_icons` as the Material Design Icons source (now 7447 icons). The `mdi*` getters and `mdi-*` keys are unchanged.

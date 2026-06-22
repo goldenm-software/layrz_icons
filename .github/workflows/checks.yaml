@@ -11,20 +11,10 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Setup Flutter
-        uses: flutter-actions/setup-flutter@v4
+      - uses: goldenm-software/layrz-actions/.github/actions/check-dart@v1
         with:
-          channel: stable
-          version: 3.41.4
-          cache: true
-          cache-sdk: true
-          cache-key: ${{ runner.os }}-flutter-${{ hashFiles('pubspec.yaml') }}
-
-      - name: Install dependencies
-        run: flutter pub get
-
-      - name: Run checks
-        run: flutter analyze
+          flutter-version: 3.44.2
+          run-tests: false
 
   changelog:
     runs-on: ubuntu-latest
@@ -33,7 +23,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: ./.github/actions/changelog
+      - uses: goldenm-software/layrz-actions/.github/actions/changelog@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           post-comment: true
+

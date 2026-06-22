@@ -262,6 +262,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.9.0"
+  flutter_material_design_icons:
+    dependency: transitive
+    description:
+      name: flutter_material_design_icons
+      sha256: "9a7b6308736e328f9ce2249c3727a56a289c915a65ebf1b1b5f237c8232e92b7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.0+7447"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -308,10 +316,10 @@ packages:
     dependency: transitive
     description:
       name: font_awesome_flutter
-      sha256: b9011df3a1fa02993630b8fb83526368cf2206a711259830325bab2f1d2a4eb0
+      sha256: "09dcde8ab90ffae1a7d65ff2ef96fc62a17ad9d0ce7c127b317ded676b0d5935"
       url: "https://pub.dev"
     source: hosted
-    version: "10.12.0"
+    version: "11.0.0"
   freezed_annotation:
     dependency: transitive
     description:
@@ -324,10 +332,10 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: "92d8cee7c57dff0a6c409c05597b460002434eccf7424a712283225b3962d03f"
+      sha256: "5922b2861e2235a3504896f0d6fa07d84141b480cf52eecd2f42cd25585a9e8a"
       url: "https://pub.dev"
     source: hosted
-    version: "17.2.3"
+    version: "17.3.0"
   google_fonts:
     dependency: transitive
     description:
@@ -368,14 +376,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.1.2"
-  iconsax_plus:
-    dependency: transitive
-    description:
-      name: iconsax_plus
-      sha256: e9e51b0652a1d3ceea5fedbfc2c1bb4ad432c2ceb7be7de2e30caf085678933c
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
   intl:
     dependency: transitive
     description:
@@ -384,14 +384,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.20.2"
-  ionicons:
-    dependency: transitive
-    description:
-      name: ionicons
-      sha256: "5496bc65a16115ecf05b15b78f494ee4a8869504357668f0a11d689e970523cf"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.2.2"
   jni:
     dependency: transitive
     description:
@@ -430,7 +422,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "1.0.7"
+    version: "1.1.0"
   layrz_logging:
     dependency: transitive
     description:
@@ -459,10 +451,10 @@ packages:
     dependency: "direct main"
     description:
       name: layrz_theme
-      sha256: e48fb2dd6d0af815593f20ae39fb13a67e056b3d68e55a6bf250ac13ad192344
+      sha256: "138ab01d634f31490715016aec8d5ef6ce02b7be8ee4cc02d6732a5480f40531"
       url: "https://pub.dev"
     source: hosted
-    version: "7.5.32"
+    version: "7.5.34"
   leak_tracker:
     dependency: transitive
     description:
@@ -527,14 +519,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.13.0"
-  material_design_icons_flutter:
-    dependency: transitive
-    description:
-      name: material_design_icons_flutter
-      sha256: "6f986b7a51f3ad4c00e33c5c84e8de1bdd140489bbcdc8b66fc1283dad4dea5a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "7.0.7296"
   meta:
     dependency: transitive
     description:
@@ -860,14 +844,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  solar_icons:
-    dependency: transitive
-    description:
-      name: solar_icons
-      sha256: "2865a62fb0a39a7c2403205bfe05453bd3f2fedbaa8e5c3d436cf2a080afe259"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.5"
   source_span:
     dependency: transitive
     description:

@@ -17,120 +17,54 @@ class LayrzIcon {
     required this.family,
   });
 
+  // ignore: non_const_argument_for_const_parameter
   IconData get iconData => IconData(codePoint, fontFamily: family.fontFamily, fontPackage: family.fontPackage);
 }
 
 enum LayrzFamily {
   materialDesignIcons,
-  solarIconsBold,
-  solarIconsOutline,
-  solarIconsBroken,
   fontAwesomeBrands,
   fontAwesomeSolid,
   fontAwesomeRegular,
-  fontAwesomeLight,
-  fontAwesomeDuotone,
-  fontAwesomeThin,
-  fontAwesomeSharpThin,
-  fontAwesomeSharpLight,
-  fontAwesomeSharpRegular,
-  fontAwesomeSharpSolid,
-  ionicons,
-  iconsaxPlusBold,
-  iconsaxPlusBroken,
-  iconsaxPlusLinear,
-  fluttySolarBold,
-  fluttySolarBroken,
-  fluttySolarLinear,
-  fluttySolarOutline,
-  fluttySolarBoldDuotone,
-  fluttySolarLineDuotone,
+  solarBold,
+  solarBroken,
+  solarLinear,
+  solarOutline,
   ;
 
   String get fontFamily {
     switch (this) {
       case LayrzFamily.materialDesignIcons:
         return 'Material Design Icons';
-      case LayrzFamily.solarIconsBold:
-        return 'SolarIconsBold';
-      case LayrzFamily.solarIconsOutline:
-        return 'SolarIconsOutline';
-      case LayrzFamily.solarIconsBroken:
-        return 'SolarIconsBroken';
       case LayrzFamily.fontAwesomeBrands:
         return 'FontAwesomeBrands';
       case LayrzFamily.fontAwesomeSolid:
         return 'FontAwesomeSolid';
       case LayrzFamily.fontAwesomeRegular:
         return 'FontAwesomeRegular';
-      case LayrzFamily.fontAwesomeLight:
-        return 'FontAwesomeLight';
-      case LayrzFamily.fontAwesomeDuotone:
-        return 'FontAwesomeDuotone';
-      case LayrzFamily.fontAwesomeThin:
-        return 'FontAwesomeThin';
-      case LayrzFamily.fontAwesomeSharpThin:
-        return 'FontAwesomeSharpThin';
-      case LayrzFamily.fontAwesomeSharpLight:
-        return 'FontAwesomeSharpLight';
-      case LayrzFamily.fontAwesomeSharpRegular:
-        return 'FontAwesomeSharpRegular';
-      case LayrzFamily.fontAwesomeSharpSolid:
-        return 'FontAwesomeSharpSolid';
-      case LayrzFamily.ionicons:
-        return 'Ionicons';
-      case LayrzFamily.iconsaxPlusBold:
-        return 'IconsaxPlusBold';
-      case LayrzFamily.iconsaxPlusBroken:
-        return 'IconsaxPlusBroken';
-      case LayrzFamily.iconsaxPlusLinear:
-        return 'IconsaxPlusLinear';
-      case LayrzFamily.fluttySolarBold:
+      case LayrzFamily.solarBold:
         return 'SolarBold';
-      case LayrzFamily.fluttySolarBroken:
+      case LayrzFamily.solarBroken:
         return 'SolarBroken';
-      case LayrzFamily.fluttySolarLinear:
+      case LayrzFamily.solarLinear:
         return 'SolarLinear';
-      case LayrzFamily.fluttySolarOutline:
+      case LayrzFamily.solarOutline:
         return 'SolarOutline';
-      case LayrzFamily.fluttySolarBoldDuotone:
-        return 'SolarBoldDuotonePrimary';
-      case LayrzFamily.fluttySolarLineDuotone:
-        return 'SolarLineDuotonePrimary';
     }
   }
 
   String get fontPackage {
     switch (this) {
       case LayrzFamily.materialDesignIcons:
-        return 'material_design_icons_flutter';
-      case LayrzFamily.solarIconsBold:
-      case LayrzFamily.solarIconsOutline:
-      case LayrzFamily.solarIconsBroken:
-        return 'solar_icons';
+        return 'flutter_material_design_icons';
       case LayrzFamily.fontAwesomeBrands:
       case LayrzFamily.fontAwesomeSolid:
       case LayrzFamily.fontAwesomeRegular:
-      case LayrzFamily.fontAwesomeLight:
-      case LayrzFamily.fontAwesomeDuotone:
-      case LayrzFamily.fontAwesomeThin:
-      case LayrzFamily.fontAwesomeSharpThin:
-      case LayrzFamily.fontAwesomeSharpLight:
-      case LayrzFamily.fontAwesomeSharpRegular:
-      case LayrzFamily.fontAwesomeSharpSolid:
         return 'font_awesome_flutter';
-      case LayrzFamily.ionicons:
-        return 'ionicons';
-      case LayrzFamily.iconsaxPlusBold:
-      case LayrzFamily.iconsaxPlusBroken:
-      case LayrzFamily.iconsaxPlusLinear:
-        return 'iconsax_plus';
-      case LayrzFamily.fluttySolarBold:
-      case LayrzFamily.fluttySolarBroken:
-      case LayrzFamily.fluttySolarLinear:
-      case LayrzFamily.fluttySolarOutline:
-      case LayrzFamily.fluttySolarBoldDuotone:
-      case LayrzFamily.fluttySolarLineDuotone:
+      case LayrzFamily.solarBold:
+      case LayrzFamily.solarBroken:
+      case LayrzFamily.solarLinear:
+      case LayrzFamily.solarOutline:
         return 'flutty_solar_icons';
     }
   }

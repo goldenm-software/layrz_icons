@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.0
+
+- **BREAKING:** Replaced `material_design_icons_flutter` with `flutter_material_design_icons` as the Material Design Icons source (now 7447 icons). The `mdi*` getters and `mdi-*` keys are unchanged.
+- **BREAKING:** Removed the `solar_icons`, `ionicons`, and `iconsax_plus` libraries. The `ionicons*`, `iconsax*`, and the old `solar_icons`-backed `solarBold`/`solarOutline`/`solarBroken` getters and their keys are gone.
+- **BREAKING:** Upgraded `font_awesome_flutter` to `^11.0.0`. Only the free families remain: Brands, Regular and Solid. The Light, Duotone, Thin, and Sharp families have been removed.
+- **BREAKING:** Renamed the `flutty_solar_icons` output from `fluttySolar*` to `solar*` (getters `solarBold*`/`solarBroken*`/`solarLinear*`/`solarOutline*`, keys `solar-bold-*`/`solar-broken-*`/`solar-linear-*`/`solar-outline-*`). These now back the `solar` namespace.
+
 ## 1.0.7
 
 - Build site with Flutter 3.41.4

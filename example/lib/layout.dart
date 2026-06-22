@@ -61,25 +61,13 @@ class Layout extends StatelessWidget {
         ThemedNavigatorPage(
           labelText: 'Solar icons',
           icon: LayrzIcons.solarOutlineHomeAngle,
-          path: '/${LayrzFamily.solarIconsBold.fontPackage}',
-          children: [LayrzFamily.solarIconsBold, LayrzFamily.solarIconsOutline].map((family) {
-            return ThemedNavigatorPage(
-              path: '/${family.fontPackage}/${family.fontFamily.replaceAll(' ', '_')}',
-              labelText: family.fontFamily,
-              icon: family.icon,
-            );
-          }).toList(),
-        ),
-        ThemedNavigatorPage(
-          labelText: 'Flutty Solar icons',
-          icon: LayrzIcons.fluttySolarBoldHomeInEssentionalUi,
-          path: '/${LayrzFamily.fluttySolarBold.fontPackage}',
+          path: '/${LayrzFamily.solarBold.fontPackage}',
           children:
               [
-                LayrzFamily.fluttySolarBold,
-                LayrzFamily.fluttySolarBroken,
-                LayrzFamily.fluttySolarLinear,
-                LayrzFamily.fluttySolarOutline,
+                LayrzFamily.solarBold,
+                LayrzFamily.solarBroken,
+                LayrzFamily.solarLinear,
+                LayrzFamily.solarOutline,
               ].map((family) {
                 return ThemedNavigatorPage(
                   path: '/${family.fontPackage}/${family.fontFamily.replaceAll(' ', '_')}',
@@ -87,32 +75,6 @@ class Layout extends StatelessWidget {
                   icon: family.icon,
                 );
               }).toList(),
-        ),
-        ThemedNavigatorPage(
-          labelText: 'Ionicons',
-          path: '/${LayrzFamily.ionicons.fontPackage}',
-          icon: LayrzFamily.ionicons.icon,
-          children: [LayrzFamily.ionicons].map((family) {
-            return ThemedNavigatorPage(
-              path: '/${family.fontPackage}/${family.fontFamily.replaceAll(' ', '_')}',
-              labelText: family.fontFamily,
-              icon: family.icon,
-            );
-          }).toList(),
-        ),
-        ThemedNavigatorPage(
-          labelText: 'Iconsax Plus',
-          path: '/${LayrzFamily.iconsaxPlusBold.fontPackage}',
-          icon: LayrzFamily.iconsaxPlusBold.icon,
-          children: [LayrzFamily.iconsaxPlusBold, LayrzFamily.iconsaxPlusBroken, LayrzFamily.iconsaxPlusLinear].map((
-            family,
-          ) {
-            return ThemedNavigatorPage(
-              path: '/${family.fontPackage}/${family.fontFamily.replaceAll(' ', '_')}',
-              labelText: family.fontFamily,
-              icon: family.icon,
-            );
-          }).toList(),
         ),
         ThemedNavigatorPage(
           labelText: 'Font awesome',
@@ -139,24 +101,6 @@ extension Icons on LayrzFamily {
       case LayrzFamily.materialDesignIcons:
         return LayrzIcons.mdiHomeVariant;
 
-      case LayrzFamily.solarIconsBold:
-        return LayrzIcons.solarBoldHomeAngle;
-
-      case LayrzFamily.solarIconsOutline:
-        return LayrzIcons.solarOutlineHomeAngle;
-
-      case LayrzFamily.ionicons:
-        return LayrzIcons.ioniconsHome;
-
-      case LayrzFamily.iconsaxPlusBold:
-        return LayrzIcons.iconsaxBoldHome;
-
-      case LayrzFamily.iconsaxPlusBroken:
-        return LayrzIcons.iconsaxBrokenHome;
-
-      case LayrzFamily.iconsaxPlusLinear:
-        return LayrzIcons.iconsaxLinearHome;
-
       case LayrzFamily.fontAwesomeBrands:
         return LayrzIcons.faBrandsChrome;
 
@@ -166,20 +110,17 @@ extension Icons on LayrzFamily {
       case LayrzFamily.fontAwesomeRegular:
         return LayrzIcons.faRegularBuilding;
 
-      case LayrzFamily.fluttySolarBold:
-        return LayrzIcons.fluttySolarBoldHomeInEssentionalUi;
+      case LayrzFamily.solarBold:
+        return LayrzIcons.solarBoldHomeInEssentionalUi;
 
-      case LayrzFamily.fluttySolarBroken:
-        return LayrzIcons.fluttySolarBrokenHomeInEssentionalUi;
+      case LayrzFamily.solarBroken:
+        return LayrzIcons.solarBrokenHomeInEssentionalUi;
 
-      case LayrzFamily.fluttySolarLinear:
-        return LayrzIcons.fluttySolarLinearHomeInEssentionalUi;
+      case LayrzFamily.solarLinear:
+        return LayrzIcons.solarLinearHomeInEssentionalUi;
 
-      case LayrzFamily.fluttySolarOutline:
-        return LayrzIcons.fluttySolarOutlineHomeInEssentionalUi;
-
-      default:
-        return LayrzIcons.mdiHomeVariant;
+      case LayrzFamily.solarOutline:
+        return LayrzIcons.solarOutlineHomeInEssentionalUi;
     }
   }
 }

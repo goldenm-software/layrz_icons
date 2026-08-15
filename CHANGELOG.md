@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.0
+
+- Changed the minimum Flutter SDK version to 3.47.0 and Dart SDK version to 3.13.0.
+- Adjusted and reviewed to not depend of any material dependency, now this package is design system agnostic.
+
 ## 1.1.1
 
 - Bump the example app's `layrz_theme` to `^7.6.0` and `layrz_models` to `^3.11.0`, which adopt the renamed `solar*` icon getters so the demo site builds against `layrz_icons` 1.1.x.

@@ -1,6 +1,7 @@
-part of "../layrz_icons.dart";
-
 /// This is a auto-generated file. Do not modify it manually.
+
+import 'class.dart';
+import 'family.dart';
 
 class LayrzIconsClasses {
   static LayrzIcon get mdiAbTesting => LayrzIcon(codePoint: 983497, name: "mdi-ab-testing", family: LayrzFamily.materialDesignIcons);

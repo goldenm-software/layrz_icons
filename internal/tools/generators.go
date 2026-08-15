@@ -37,8 +37,10 @@ func GenerateClassEnum(baseDir string, m *AllMappings) error {
 
 	w := func(s string) { f.WriteString(s) }
 
-	w("part of \"../layrz_icons.dart\";\n\n")
 	w("/// This is a auto-generated file. Do not modify it manually.\n\n")
+	w("import 'class.dart';\n")
+	w("import 'family.dart';\n")
+	w("\n")
 	w("class LayrzIconsClasses {\n")
 
 	for _, e := range m.MDI {
@@ -89,8 +91,10 @@ func GenerateIconEnum(baseDir string, m *AllMappings) error {
 
 	w := func(s string) { f.WriteString(s) }
 
-	w("part of \"../layrz_icons.dart\";\n\n")
 	w("/// This is a auto-generated file. Do not modify it manually.\n\n")
+	w("import 'class_enum.dart';\n")
+	w("import 'package:flutter/widgets.dart';\n")
+	w("\n")
 	w("class LayrzIcons {\n")
 
 	for _, e := range m.MDI {
@@ -137,8 +141,10 @@ func GenerateMapping(baseDir string, m *AllMappings) error {
 
 	w := func(s string) { f.WriteString(s) }
 
-	w("part of \"../layrz_icons.dart\";\n\n")
 	w("/// This is a auto-generated file. Do not modify it manually.\n\n")
+	w("import 'class.dart';\n")
+	w("import 'class_enum.dart';\n")
+	w("\n")
 	w("Map<String, LayrzIcon> iconMapping = {\n")
 
 	w("  // Material Design Icons\n")

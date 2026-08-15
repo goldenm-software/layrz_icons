@@ -13,7 +13,7 @@ jobs:
 
       - uses: goldenm-software/layrz-actions/.github/actions/check-dart@v1
         with:
-          flutter-version: 3.44.2
+          flutter-version: 3.47.0
           run-tests: false
 
   changelog:

@@ -1,6 +1,7 @@
-part of "../layrz_icons.dart";
-
 /// This is a auto-generated file. Do not modify it manually.
+
+import 'class_enum.dart';
+import 'package:flutter/widgets.dart';
 
 class LayrzIcons {
   static IconData get mdiAbTesting => LayrzIconsClasses.mdiAbTesting.iconData;

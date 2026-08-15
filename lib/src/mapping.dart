@@ -1,6 +1,7 @@
-part of "../layrz_icons.dart";
-
 /// This is a auto-generated file. Do not modify it manually.
+
+import 'class.dart';
+import 'class_enum.dart';
 
 Map<String, LayrzIcon> iconMapping = {
   // Material Design Icons

@@ -7,6 +7,9 @@
 
 Sometimes, you need to use icons in your project, but using a single library? Maybe too boring, using multiple? Well, works but can be a mess. So, we created Layrz Icons, a simple and easy to use icon library, designed to combine multiple libraries in a single one, also adding a mapping object to convert any `IconData` into a string.
 
+## Decouple compatibility
+This library does not depend on any material or cupertino dependency, so you can use it in any design system, like Material, Cupertino, Fluent, etc.
+
 ## Live demo / search
 You can check the icons and search for them on the [https://icons.layrz.com](https://icons.layrz.com)
 
